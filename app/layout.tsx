@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   description:
     'Професійне влаштування буронабивних паль будь-якої складності. Фундаменти для будинків, котеджів та промислових об’єктів. Діаметр 300-800 мм, глибина до 25м.',
   keywords: [
+    `BASE_URL=${process.env.NEXT_PUBLIC_BASE_URL}`,
     'буронабивні палі',
     'фундамент на палях',
     'бурові роботи Київ',
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     'фундамент під будинок',
   ],
   authors: [{ name: 'Drilling Bud' }],
-  metadataBase: new URL('https://drillingbud.com.ua'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || ''),
 
   openGraph: {
     title: 'Drilling Bud | Улаштування буронабивних паль',
