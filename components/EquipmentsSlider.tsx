@@ -52,7 +52,7 @@ export default function EquipmentsSlider() {
                 src={image}
                 alt={`Equipment ${index}`}
                 fill
-                quality={90}
+                quality={80}
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                 className="object-cover transition duration-700 hover:scale-105"
               />

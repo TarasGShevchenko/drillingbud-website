@@ -7,7 +7,14 @@ import { goToContacts } from '@/utils'
 export default function MainHero() {
   return (
     <section className="relative flex min-h-screen w-full items-center justify-center pt-20 pb-16">
-      <Image src="/img/title.jpg" alt="Hero background" fill className="object-cover" priority />
+      <Image
+        src="/img/title.jpg"
+        alt="Hero background"
+        fill
+        className="object-cover"
+        priority
+        quality={80}
+      />
 
       <div className="absolute inset-0 bg-black/50" />
 

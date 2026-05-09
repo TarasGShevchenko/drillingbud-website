@@ -53,6 +53,7 @@ export default function MainDescription({
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
               priority={false}
+              quality={80}
             />
           </motion.div>
         </div>
