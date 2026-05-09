@@ -18,7 +18,10 @@
 /out/
 
 # production
+/dist
 /build
+dist
+build
 
 # misc
 .DS_Store
@@ -36,6 +39,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# IDE
+.idea
+.vscode
+
 # typescript
 *.tsbuildinfo
-next-env.d.ts
