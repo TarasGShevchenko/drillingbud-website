@@ -3,6 +3,7 @@ import { MainHero, MainDescription, MainEquipments, MainContact } from '@/compon
 export const dynamic = 'force-static'
 
 export default function Home() {
+  console.log('base url', process.env.BASE_URL)
   return (
     <main>
       <MainHero />
