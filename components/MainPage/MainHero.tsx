@@ -8,7 +8,7 @@ export default function MainHero() {
   return (
     <section className="relative flex min-h-screen w-full items-center justify-center pt-20 pb-16">
       <Image
-        src="/img/title.jpg"
+        src="/img/title.webp"
         alt="Hero background"
         fill
         className="object-cover"

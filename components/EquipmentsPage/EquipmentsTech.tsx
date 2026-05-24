@@ -17,7 +17,21 @@ export default function EquipmentsWorks() {
         </motion.h2>
       </div>
 
-      <EquipmentsSlider />
+      <EquipmentsSlider
+        images={[
+          '/img/11.webp',
+          '/img/12.webp',
+          '/img/13.webp',
+          '/img/14.webp',
+          '/img/15.webp',
+          '/img/16.webp',
+          '/img/17.webp',
+          '/img/18.webp',
+          '/img/19.webp',
+          '/img/20.webp',
+          '/img/21.webp',
+        ]}
+      />
     </section>
   )
 }
