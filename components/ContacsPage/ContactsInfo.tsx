@@ -5,6 +5,9 @@ import { Clock, Mail, Phone } from 'lucide-react'
 
 import { ContactForm } from '@/components'
 
+const EMAIL = process.env.NEXT_PUBLIC_EMAIL
+const PHONE = process.env.NEXT_PUBLIC_PHONE
+
 export default function ContactsInfo() {
   return (
     <div className="mx-auto max-w-6xl px-6 py-16">
@@ -26,10 +29,10 @@ export default function ContactsInfo() {
                 <div>
                   <p className="text-lg font-semibold">Телефон</p>
                   <a
-                    href="tel:+380636808066"
+                    href={`tel:${PHONE}`}
                     className="text-2xl text-white transition-colors hover:text-amber-400"
                   >
-                    +380 63 680 80 66
+                    {PHONE}
                   </a>
                   <p className="mt-1 text-zinc-400">Дзвінки з 5:00</p>
                 </div>
@@ -42,10 +45,10 @@ export default function ContactsInfo() {
                 <div>
                   <p className="text-lg font-semibold">Email</p>
                   <a
-                    href="mailto:q4969060@gmail.com"
+                    href={`mailto:${EMAIL}`}
                     className="text-xl text-white transition-colors hover:text-amber-400"
                   >
-                    q4969060@gmail.com
+                    {EMAIL}
                   </a>
                 </div>
               </div>

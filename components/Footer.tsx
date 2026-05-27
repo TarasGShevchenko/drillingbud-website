@@ -1,6 +1,9 @@
 'use client'
 import { motion } from 'framer-motion'
 
+const EMAIL = process.env.NEXT_PUBLIC_EMAIL
+const PHONE = process.env.NEXT_PUBLIC_PHONE
+
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
@@ -15,7 +18,7 @@ export default function Footer() {
               <br />
               Працюемо в Киеві, Київскій області!
               <br />
-              Можливий виїзд в Черкаси, Чернігів та Житомир!
+              Можливий виїзд в Черкаси, Чернігів та Житомир, а також по всій Україні!
               <br />
             </p>
           </div>
@@ -23,7 +26,7 @@ export default function Footer() {
           <div>
             <h4 className="mb-4 text-lg font-semibold text-white">Графік роботи</h4>
             <div className="flex flex-col gap-3 text-zinc-400">
-              Працюемо цілодобово, 7 днів на тиждень.
+              Працюємо цілодобово, 7 днів на тиждень.
               <br />
               <br />
               Пн - Нд: 5:00 - 22:00
@@ -35,11 +38,11 @@ export default function Footer() {
             <h4 className="mb-4 text-lg font-semibold text-white">Звязок</h4>
 
             <div className="mb-8 flex flex-col gap-3 text-zinc-400">
-              <a href="mailto:your@email.com" className="transition-colors hover:text-white">
-                q4969060@gmail.com
+              <a href={`mailto:${EMAIL}`} className="transition-colors hover:text-white">
+                {EMAIL}
               </a>
-              <a href="tel:+79991234567" className="transition-colors hover:text-white">
-                +380 63 680 80 66
+              <a href={`tel:${PHONE}`} className="transition-colors hover:text-white">
+                {PHONE}
               </a>
             </div>
 
