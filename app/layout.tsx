@@ -6,6 +6,7 @@ import './globals.css'
 
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import MotionProvider from '@/components/MotionProvider'
 import {
   faqSchema,
   localBusinessSchema,
@@ -104,9 +105,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify(websiteSchema),
           }}
         />
-        <Navbar />
-        {children}
-        <Footer />
+        <MotionProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </MotionProvider>
         <SpeedInsights />
       </body>
     </html>

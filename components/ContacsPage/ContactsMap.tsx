@@ -1,16 +1,11 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { Reveal } from '@/components'
 
 export default function ContactsInfo() {
   return (
     <section className="bg-zinc-950 py-12">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="mx-auto max-w-6xl px-6"
-      >
+      <Reveal className="mx-auto max-w-6xl px-6">
         <h3 className="mb-6 text-center text-2xl font-semibold">Ми знаходимось у центрі Києва</h3>
 
         <div className="aspect-video w-full overflow-hidden rounded-3xl border border-zinc-800 shadow-2xl">
@@ -28,7 +23,7 @@ export default function ContactsInfo() {
         <p className="mt-4 text-center text-sm text-zinc-500">
           Точне місце виїзду бригади узгоджується індивідуально
         </p>
-      </motion.div>
+      </Reveal>
     </section>
   )
 }

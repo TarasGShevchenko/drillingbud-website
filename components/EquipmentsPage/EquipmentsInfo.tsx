@@ -1,17 +1,13 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { Reveal } from '@/components'
 
 export default function EquipmentsHero() {
   return (
     <section className="bg-zinc-900 py-16">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid items-center gap-12 md:grid-cols-2">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+          <Reveal>
             <h2 className="mb-6 text-4xl font-bold">Сучасна техніка для надійних фундаментів</h2>
             <div className="space-y-5 text-lg text-zinc-400">
               <p>
@@ -23,15 +19,13 @@ export default function EquipmentsHero() {
                 до 800 мм та глибиною до 25 метрів.
               </p>
             </div>
-          </motion.div>
+          </Reveal>
 
-          <div className="rounded-3xl bg-zinc-800 p-8 text-sm tracking-widest text-zinc-400 uppercase">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="grid grid-cols-2 gap-6"
-            >
+          <Reveal
+            delay={0.1}
+            className="rounded-3xl bg-zinc-800 p-8 text-sm tracking-widest text-zinc-400 uppercase"
+          >
+            <div className="grid grid-cols-2 gap-6">
               <div>
                 <p className="mb-1 font-semibold text-amber-400">Діаметр паль</p>
                 <p className="text-2xl font-bold text-white">300 — 800 мм</p>
@@ -48,8 +42,8 @@ export default function EquipmentsHero() {
                 <p className="mb-1 font-semibold text-amber-400">Продуктивність</p>
                 <p className="text-2xl font-bold text-white">До 12 паль за зміну</p>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

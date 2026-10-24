@@ -31,9 +31,17 @@ All user-facing copy is Ukrainian. Leads go to the owner's Telegram; there is no
 - Prettier: no semicolons, single quotes, trailing commas `es5`, 2 spaces, width 100,
   Tailwind class sorting. Don't hand-format; run Prettier on the files you changed.
 - Import via the `@/` alias (maps to repo root).
-- All components are client components (`'use client'`). Animations use framer-motion
-  `motion.*` with `initial` + `whileInView` + `viewport={{ once: true }}` (scroll reveal) or
-  `initial` + `animate` (on mount). Follow the same pattern for new sections.
+- All components are client components (`'use client'`). Animate with `<Reveal>`
+  (`components/Reveal.tsx`), not hand-written `motion.*` props. Default: fade up 30px,
+  0.6s `easeOut`, plays once when 30% of the element is in view.
+  - `as="h1" | "h2" | "p" | …` picks the tag (default `div`); `delay` staggers items in a
+    group (0, 0.1, 0.2); `onMount` animates on page load: first screen (heroes) only,
+    staggered 0 → 0.15 → 0.3.
+  - Any motion prop overrides the default (`initial`, `whileInView`, …); `transition` is merged.
+  - Animate the visible container (card, block), not just its inner content. The footer is
+    not animated. Use plain `motion.*` only for other kinds of animation (menus, hover,
+    state changes).
+  - `MotionProvider` in the layout applies `reducedMotion="user"`.
 - Visual style: dark theme (`bg-black`, `bg-zinc-950/900/800`), `text-zinc-400` body text,
   `amber-400` accent, `rounded-2xl`/`rounded-3xl`, mostly `max-w-6xl` containers.
 - Images: `next/image`, `.webp` files in `public/img`. Give `fill` images a `sizes` prop.

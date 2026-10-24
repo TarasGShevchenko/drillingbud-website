@@ -1,8 +1,10 @@
 'use client'
 
 import { ChangeEvent, SubmitEvent, useState } from 'react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { isValidPhoneNumber } from 'libphonenumber-js/max'
+
+import { Reveal } from '@/components'
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -119,16 +121,12 @@ export default function ContactForm() {
 
   return (
     <div className="mx-auto max-w-2xl px-6 text-center">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-      >
+      <Reveal>
         <h2 className="text-4xl font-bold text-white md:text-5xl">Замовити дзвінок</h2>
         <p className="mt-4 text-lg text-zinc-400">
           Залиште контакти — передзвонимо протягом 15 хвилин
         </p>
-      </motion.div>
+      </Reveal>
 
       <div className="mt-12">
         {submitted ? (
@@ -143,11 +141,7 @@ export default function ContactForm() {
           </motion.div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
+            <Reveal>
               <input
                 type="text"
                 name="name"
@@ -158,16 +152,22 @@ export default function ContactForm() {
                   errors.name ? 'border-red-500' : 'border-zinc-700 focus:border-white/50'
                 }`}
               />
-              {errors.name && (
-                <p className="mt-1.5 text-left text-sm text-red-500">{errors.name}</p>
-              )}
-            </motion.div>
+              <AnimatePresence initial={false}>
+                {errors.name && (
+                  <motion.p
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                    className="overflow-hidden pt-1.5 text-left text-sm text-red-500"
+                  >
+                    {errors.name}
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </Reveal>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
+            <Reveal delay={0.1}>
               <input
                 type="tel"
                 name="phone"
@@ -178,15 +178,21 @@ export default function ContactForm() {
                   errors.phone ? 'border-red-500' : 'border-zinc-700 focus:border-white/50'
                 }`}
               />
-              {errors.phone && (
-                <p className="mt-1.5 text-left text-sm text-red-500">{errors.phone}</p>
-              )}
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
+              <AnimatePresence initial={false}>
+                {errors.phone && (
+                  <motion.p
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                    className="overflow-hidden pt-1.5 text-left text-sm text-red-500"
+                  >
+                    {errors.phone}
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </Reveal>
+            <Reveal delay={0.2}>
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -194,11 +200,11 @@ export default function ContactForm() {
               >
                 {isSubmitting ? 'Відправляємо...' : 'Замовити дзвінок'}
               </button>
-            </motion.div>
 
-            <p className="text-xs text-zinc-500">
-              Натискаючи кнопку, ви погоджуєтесь на обробку персональних даних
-            </p>
+              <p className="mt-6 text-xs text-zinc-500">
+                Натискаючи кнопку, ви погоджуєтесь на обробку персональних даних
+              </p>
+            </Reveal>
           </form>
         )}
       </div>

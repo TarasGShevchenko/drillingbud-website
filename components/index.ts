@@ -16,6 +16,8 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import EquipmentsSlider from '@/components/EquipmentsSlider'
 import ContactForm from '@/components/ContactForm'
+import MotionProvider from '@/components/MotionProvider'
+import Reveal from '@/components/Reveal'
 
 export {
   // nav bar
@@ -39,4 +41,6 @@ export {
   // ...rest
   EquipmentsSlider,
   ContactForm,
+  MotionProvider,
+  Reveal,
 }

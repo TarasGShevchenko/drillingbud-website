@@ -1,8 +1,8 @@
 'use client'
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Phone } from 'lucide-react'
 
+import { Reveal } from '@/components'
 import { goToContacts } from '@/utils'
 
 const PHONE = process.env.NEXT_PUBLIC_PHONE
@@ -22,28 +22,21 @@ export default function MainHero() {
       <div className="absolute inset-0 bg-black/50" />
 
       <div className="relative z-10 max-w-4xl px-6 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+        <Reveal
+          as="h1"
+          onMount
           className="text-5xl leading-tight font-bold text-white md:text-7xl lg:text-[4.5rem]"
         >
           Улаштування буронабивних паль
-        </motion.h1>
+        </Reveal>
 
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="mt-6 text-xl text-zinc-200 md:text-2xl"
-        >
+        <Reveal as="p" onMount delay={0.15} className="mt-6 text-xl text-zinc-200 md:text-2xl">
           Будь-якої складності
-        </motion.p>
+        </Reveal>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+        <Reveal
+          onMount
+          delay={0.3}
           className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <button
@@ -63,7 +56,7 @@ export default function MainHero() {
               {PHONE}
             </a>
           )}
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   )
