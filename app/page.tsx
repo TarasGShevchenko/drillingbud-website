@@ -1,4 +1,10 @@
+import type { Metadata } from 'next'
+
 import { MainHero, MainDescription, MainEquipments, MainContact } from '@/components'
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+}
 
 export const dynamic = 'force-static'
 

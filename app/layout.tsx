@@ -1,5 +1,5 @@
 import React from 'react'
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -11,6 +11,7 @@ import {
   localBusinessSchema,
   organizationSchema,
   serviceSchema,
+  sharedOpenGraph,
   webpageSchema,
   websiteSchema,
 } from '@/utils'
@@ -35,21 +36,10 @@ export const metadata: Metadata = {
   authors: [{ name: 'Drilling Bud' }],
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL!),
 
-  alternates: { canonical: '/' },
-
   openGraph: {
+    ...sharedOpenGraph,
     title: 'Drilling Bud | Улаштування буронабивних паль',
     description: 'Професійне влаштування буронабивних паль у Києві та області',
-    images: [
-      {
-        url: '/img/01.webp',
-        width: 1200,
-        height: 630,
-        alt: 'Буронабивні палі Drilling Bud',
-      },
-    ],
-    locale: 'uk_UA',
-    type: 'website',
   },
 
   twitter: {

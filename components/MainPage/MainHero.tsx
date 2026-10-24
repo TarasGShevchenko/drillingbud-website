@@ -1,8 +1,11 @@
 'use client'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { Phone } from 'lucide-react'
 
 import { goToContacts } from '@/utils'
+
+const PHONE = process.env.NEXT_PUBLIC_PHONE
 
 export default function MainHero() {
   return (
@@ -41,7 +44,7 @@ export default function MainHero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-10"
+          className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <button
             onClick={goToContacts}
@@ -50,6 +53,16 @@ export default function MainHero() {
             Замовити дзвінок
             <span className="text-xl transition-transform group-hover:rotate-12">📞</span>
           </button>
+
+          {PHONE && (
+            <a
+              href={`tel:${PHONE}`}
+              className="inline-flex items-center gap-3 rounded-full border border-white/40 px-10 py-4 text-lg font-semibold text-white transition-all duration-300 hover:border-amber-400 hover:text-amber-400 active:scale-95"
+            >
+              <Phone size={20} />
+              {PHONE}
+            </a>
+          )}
         </motion.div>
       </div>
     </section>

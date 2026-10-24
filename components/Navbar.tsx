@@ -3,9 +3,11 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Menu, Phone, X } from 'lucide-react'
 
 import { navLinks } from '@/constants'
+
+const PHONE = process.env.NEXT_PUBLIC_PHONE
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -40,10 +42,36 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* MOBILE BUTTON */}
-          <button onClick={() => setIsOpen(true)} className="flex-shrink-0 text-white lg:hidden">
-            <Menu size={28} />
-          </button>
+          {/* DESKTOP PHONE */}
+          {PHONE && (
+            <a
+              href={`tel:${PHONE}`}
+              className="hidden flex-shrink-0 items-center gap-2 font-semibold text-white transition-colors duration-300 hover:text-amber-400 lg:inline-flex"
+            >
+              <Phone size={18} className="text-amber-400" />
+              {PHONE}
+            </a>
+          )}
+
+          {/* MOBILE BUTTONS */}
+          <div className="flex flex-shrink-0 items-center gap-5 lg:hidden">
+            {PHONE && (
+              <a
+                href={`tel:${PHONE}`}
+                aria-label={`Зателефонувати ${PHONE}`}
+                className="text-amber-400 transition-colors hover:text-white"
+              >
+                <Phone size={24} />
+              </a>
+            )}
+            <button
+              onClick={() => setIsOpen(true)}
+              aria-label="Відкрити меню"
+              className="text-white"
+            >
+              <Menu size={28} />
+            </button>
+          </div>
         </div>
       </motion.nav>
 
@@ -57,7 +85,11 @@ export default function Navbar() {
             className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/95 backdrop-blur-2xl"
           >
             {/* CLOSE BUTTON */}
-            <button onClick={() => setIsOpen(false)} className="absolute top-6 right-6 text-white">
+            <button
+              onClick={() => setIsOpen(false)}
+              aria-label="Закрити меню"
+              className="absolute top-6 right-6 text-white"
+            >
               <X size={36} />
             </button>
 
@@ -81,6 +113,21 @@ export default function Navbar() {
                   </Link>
                 </motion.div>
               ))}
+
+              {PHONE && (
+                <motion.a
+                  href={`tel:${PHONE}`}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: navLinks.length * 0.1,
+                  }}
+                  className="inline-flex items-center gap-3 text-2xl font-semibold text-amber-400 transition-colors hover:text-white"
+                >
+                  <Phone size={24} />
+                  {PHONE}
+                </motion.a>
+              )}
             </div>
           </motion.div>
         )}
