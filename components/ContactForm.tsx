@@ -91,8 +91,10 @@ export default function ContactForm() {
   return (
     <div className="mx-auto max-w-2xl px-6 text-center">
       <Reveal>
-        <h2 className="text-4xl font-bold text-white md:text-5xl">Замовити дзвінок</h2>
-        <p className="mt-4 text-lg text-zinc-400">
+        <h2 className="text-4xl font-bold text-gh-fg md:text-5xl dark:text-white">
+          Замовити дзвінок
+        </h2>
+        <p className="mt-4 text-lg text-gh-muted dark:text-zinc-400">
           Залиште контакти — передзвонимо протягом 15 хвилин
         </p>
       </Reveal>
@@ -119,7 +121,7 @@ export default function ContactForm() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Ваше ім'я"
-                className={`w-full rounded-2xl border bg-zinc-800 px-6 py-4 text-lg transition focus:outline-none ${
+                className={`w-full rounded-2xl border bg-white px-6 py-4 text-lg transition focus:outline-none dark:bg-zinc-800 ${
                   errors.name ? 'border-red-500' : 'border-zinc-700 focus:border-white/50'
                 }`}
               />
@@ -133,7 +135,7 @@ export default function ContactForm() {
                 value={formData.phone}
                 onChange={handlePhoneChange}
                 placeholder="+380 XX XXX XX XX"
-                className={`w-full rounded-2xl border bg-zinc-800 px-6 py-4 text-lg transition focus:outline-none ${
+                className={`w-full rounded-2xl border bg-white px-6 py-4 text-lg transition focus:outline-none dark:bg-zinc-800 ${
                   errors.phone ? 'border-red-500' : 'border-zinc-700 focus:border-white/50'
                 }`}
               />
@@ -142,7 +144,7 @@ export default function ContactForm() {
 
             <Reveal delay={0.1}>
               <fieldset>
-                <legend className="mb-3 text-left text-zinc-400">
+                <legend className="mb-3 text-left text-gh-muted dark:text-zinc-400">
                   Коли вам зручно поговорити?
                 </legend>
                 <div className="grid grid-cols-3 gap-3">
@@ -156,7 +158,7 @@ export default function ContactForm() {
                         onChange={handleChange}
                         className="peer sr-only"
                       />
-                      <span className="block rounded-2xl border border-zinc-700 bg-zinc-800 py-3 text-lg transition peer-checked:border-amber-400 peer-checked:text-amber-400 peer-focus-visible:border-white/50 hover:border-zinc-500">
+                      <span className="block rounded-2xl border border-zinc-700 bg-white py-3 text-lg transition peer-checked:border-amber-400 peer-checked:text-amber-400 peer-focus-visible:border-white/50 hover:border-zinc-500 dark:bg-zinc-800">
                         {time}
                       </span>
                     </label>
@@ -173,7 +175,7 @@ export default function ContactForm() {
                 rows={3}
                 maxLength={1000}
                 placeholder="Коментар (необов'язково)"
-                className="w-full resize-none rounded-2xl border border-zinc-700 bg-zinc-800 px-6 py-4 text-lg transition focus:border-white/50 focus:outline-none"
+                className="w-full resize-none rounded-2xl border border-zinc-700 bg-white px-6 py-4 text-lg transition focus:border-white/50 focus:outline-none dark:bg-zinc-800"
               />
             </Reveal>
 
@@ -181,12 +183,12 @@ export default function ContactForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full rounded-2xl bg-white py-4 text-lg font-semibold text-black transition-all hover:bg-amber-400 disabled:opacity-70"
+                className="w-full rounded-2xl bg-black py-4 text-lg font-semibold text-white transition-all hover:bg-amber-400 hover:text-black disabled:opacity-70 dark:bg-white dark:text-black"
               >
                 {isSubmitting ? 'Відправляємо...' : 'Замовити дзвінок'}
               </button>
 
-              <p className="mt-6 text-xs text-zinc-500">
+              <p className="mt-6 text-xs text-gh-muted dark:text-zinc-500">
                 Натискаючи кнопку, ви погоджуєтесь на обробку персональних даних
               </p>
             </Reveal>

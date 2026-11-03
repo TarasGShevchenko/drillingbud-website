@@ -20,6 +20,7 @@ import ContactForm from '@/components/ContactForm'
 import FieldError from '@/components/FieldError'
 import MotionProvider from '@/components/MotionProvider'
 import Reveal from '@/components/Reveal'
+import ThemeSwitcher from '@/components/ThemeSwitcher'
 
 export {
   // nav bar
@@ -47,4 +48,5 @@ export {
   FieldError,
   MotionProvider,
   Reveal,
+  ThemeSwitcher,
 }

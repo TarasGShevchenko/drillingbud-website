@@ -4,7 +4,7 @@ import { EquipmentsSlider, Reveal } from '@/components'
 
 export default function EquipmentsWorks() {
   return (
-    <section className="bg-black py-16">
+    <section className="bg-white py-16 dark:bg-black">
       <div className="mx-auto max-w-7xl px-6">
         <Reveal as="h2" className="mb-12 text-center text-4xl font-bold">
           Наша техніка в роботі

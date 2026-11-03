@@ -8,12 +8,12 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-zinc-900 bg-zinc-950 pt-16 pb-10">
+    <footer className="border-t border-zinc-900 bg-white pt-16 pb-10 dark:bg-zinc-950">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
             <h3 className="mb-4 text-2xl font-bold">Про Нас</h3>
-            <p className="max-w-xs text-zinc-400">
+            <p className="max-w-xs text-gh-muted dark:text-zinc-400">
               Улаштування буронабивних паль любої складності!
               <br />
               Працюемо в Киеві, Київскій області!
@@ -24,8 +24,8 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-lg font-semibold text-white">Графік роботи</h4>
-            <div className="flex flex-col gap-3 text-zinc-400">
+            <h4 className="mb-4 text-lg font-semibold text-gh-fg dark:text-white">Графік роботи</h4>
+            <div className="flex flex-col gap-3 text-gh-muted dark:text-zinc-400">
               Працюємо цілодобово, 7 днів на тиждень.
               <br />
               <br />
@@ -35,13 +35,19 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-lg font-semibold text-white">Звязок</h4>
+            <h4 className="mb-4 text-lg font-semibold text-gh-fg dark:text-white">Звязок</h4>
 
-            <div className="mb-8 flex flex-col gap-3 text-zinc-400">
-              <a href={`mailto:${EMAIL}`} className="transition-colors hover:text-white">
+            <div className="mb-8 flex flex-col gap-3 text-gh-muted dark:text-zinc-400">
+              <a
+                href={`mailto:${EMAIL}`}
+                className="transition-colors hover:text-gh-fg dark:hover:text-white"
+              >
                 {EMAIL}
               </a>
-              <a href={`tel:${PHONE}`} className="transition-colors hover:text-white">
+              <a
+                href={`tel:${PHONE}`}
+                className="transition-colors hover:text-gh-fg dark:hover:text-white"
+              >
                 {PHONE}
               </a>
             </div>
@@ -58,7 +64,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.2, y: -2 }}
                   transition={{ duration: 0.2 }}
-                  className="text-zinc-400 transition-colors hover:text-white"
+                  className="text-gh-muted transition-colors hover:text-gh-fg dark:text-zinc-400 dark:hover:text-white"
                 >
                   {social.name}
                 </motion.a>
@@ -67,7 +73,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-zinc-900 pt-8 text-center text-sm text-zinc-500">
+        <div className="mt-16 border-t border-zinc-900 pt-8 text-center text-sm text-gh-muted dark:text-zinc-500">
           © {currentYear} Drilling Bud. All Rights Reserved.
         </div>
       </div>

@@ -13,6 +13,7 @@ import {
   organizationSchema,
   serviceSchema,
   sharedOpenGraph,
+  themeScript,
   webpageSchema,
   websiteSchema,
 } from '@/utils'
@@ -66,7 +67,11 @@ export const dynamic = 'force-static'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="uk" data-scroll-behavior="smooth">
+    // suppressHydrationWarning: themeScript adds the `dark` class before React hydrates
+    <html lang="uk" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className={inter.className}>
         <script
           type="application/ld+json"

@@ -6,7 +6,7 @@ import { EquipmentsSlider, Reveal } from '@/components'
 
 export default function MainEquipments() {
   return (
-    <section className="relative overflow-hidden bg-black py-20 md:py-28">
+    <section className="relative overflow-hidden bg-white py-20 md:py-28 dark:bg-black">
       <Reveal>
         <EquipmentsSlider
           images={[
