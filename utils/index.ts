@@ -1,5 +1,6 @@
 export * from './seo'
 export * from './phone'
+export * from './theme'
 
 export const goToContacts = () => {
   const contacts = document.getElementById('contacts')

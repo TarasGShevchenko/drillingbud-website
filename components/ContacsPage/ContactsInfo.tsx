@@ -26,11 +26,11 @@ export default function ContactsInfo() {
                   <p className="text-lg font-semibold">Телефон</p>
                   <a
                     href={`tel:${PHONE}`}
-                    className="text-2xl text-white transition-colors hover:text-amber-400"
+                    className="text-2xl text-gh-fg transition-colors hover:text-amber-400 dark:text-white"
                   >
                     {PHONE}
                   </a>
-                  <p className="mt-1 text-zinc-400">Дзвінки з 5:00</p>
+                  <p className="mt-1 text-gh-muted dark:text-zinc-400">Дзвінки з 5:00</p>
                 </div>
               </Reveal>
 
@@ -42,7 +42,7 @@ export default function ContactsInfo() {
                   <p className="text-lg font-semibold">Email</p>
                   <a
                     href={`mailto:${EMAIL}`}
-                    className="text-xl text-white transition-colors hover:text-amber-400"
+                    className="text-xl text-gh-fg transition-colors hover:text-amber-400 dark:text-white"
                   >
                     {EMAIL}
                   </a>
@@ -55,10 +55,10 @@ export default function ContactsInfo() {
                 </div>
                 <div>
                   <p className="text-lg font-semibold">Графік роботи</p>
-                  <p className="text-zinc-400">
-                    Працюємо <span className="text-white">цілодобово</span>
+                  <p className="text-gh-muted dark:text-zinc-400">
+                    Працюємо <span className="text-gh-fg dark:text-white">цілодобово</span>
                     <br />
-                    Пн — Нд: <span className="text-white">5:00 — 22:00</span>
+                    Пн — Нд: <span className="text-gh-fg dark:text-white">5:00 — 22:00</span>
                   </p>
                 </div>
               </Reveal>

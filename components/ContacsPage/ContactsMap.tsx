@@ -4,7 +4,7 @@ import { Reveal } from '@/components'
 
 export default function ContactsInfo() {
   return (
-    <section className="bg-zinc-950 py-12">
+    <section className="bg-white py-12 dark:bg-zinc-950">
       <Reveal className="mx-auto max-w-6xl px-6">
         <h3 className="mb-6 text-center text-2xl font-semibold">Ми знаходимось у центрі Києва</h3>
 
@@ -20,7 +20,7 @@ export default function ContactsInfo() {
           />
         </div>
 
-        <p className="mt-4 text-center text-sm text-zinc-500">
+        <p className="mt-4 text-center text-sm text-gh-muted dark:text-zinc-500">
           Точне місце виїзду бригади узгоджується індивідуально
         </p>
       </Reveal>

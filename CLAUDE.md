@@ -44,6 +44,13 @@ All user-facing copy is Ukrainian. Leads go to the owner's Telegram; there is no
   - `MotionProvider` in the layout applies `reducedMotion="user"`.
 - Visual style: dark theme (`bg-black`, `bg-zinc-950/900/800`), `text-zinc-400` body text,
   `amber-400` accent, `rounded-2xl`/`rounded-3xl`, mostly `max-w-6xl` containers.
+- Light theme: `dark:` (class-based, `.dark` on `<html>`) keeps the original dark classes; the
+  light class sits in front of it, e.g. `bg-white dark:bg-zinc-950`, `text-gh-fg dark:text-white`.
+  Light colors are GitHub's (`gh-subtle`, `gh-fg`, `gh-muted` in `app/globals.css`). So far only
+  backgrounds (page, forms, header), text and the form submit buttons (black in light) have
+  light variants; accent and borders don't. `themeScript` (`utils/theme.ts`, in the layout
+  `<head>`) picks: saved choice → browser → light. `ThemeSwitcher` (one icon button) is in the
+  desktop header and top-left in the mobile menu.
 - Images: `next/image`, `.webp` files in `public/img`. Give `fill` images a `sizes` prop.
 - Copy and validation messages are in Ukrainian, as is the Telegram lead message.
 

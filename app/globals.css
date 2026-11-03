@@ -1,15 +1,24 @@
 @import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* THEME: `.dark` on <html> is set before paint by themeScript (utils/theme.ts) */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Light theme colors taken from GitHub (light) */
+@theme {
+  --color-gh-subtle: #eff2f5;
+  --color-gh-fg: #1f2328;
+  --color-gh-muted: #59636e;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #ffffff;
+  --foreground: #1f2328;
+}
+
+:root.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 body {

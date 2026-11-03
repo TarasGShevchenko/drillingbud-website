@@ -4,12 +4,12 @@ import { Reveal } from '@/components'
 
 export default function EquipmentsHero() {
   return (
-    <section className="bg-zinc-900 py-16">
+    <section className="bg-gh-subtle py-16 dark:bg-zinc-900">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid items-center gap-12 md:grid-cols-2">
           <Reveal>
             <h2 className="mb-6 text-4xl font-bold">Сучасна техніка для надійних фундаментів</h2>
-            <div className="space-y-5 text-lg text-zinc-400">
+            <div className="space-y-5 text-lg text-gh-muted dark:text-zinc-400">
               <p>
                 Ми використовуємо професійне бурове обладнання провідних виробників. Це дозволяє
                 виконувати роботи швидко, якісно та з мінімальним впливом на навколишнє середовище.
@@ -23,24 +23,24 @@ export default function EquipmentsHero() {
 
           <Reveal
             delay={0.1}
-            className="rounded-3xl bg-zinc-800 p-8 text-sm tracking-widest text-zinc-400 uppercase"
+            className="rounded-3xl bg-white p-8 text-sm tracking-widest text-gh-muted uppercase dark:bg-zinc-800 dark:text-zinc-400"
           >
             <div className="grid grid-cols-2 gap-6">
               <div>
                 <p className="mb-1 font-semibold text-amber-400">Діаметр паль</p>
-                <p className="text-2xl font-bold text-white">300 — 800 мм</p>
+                <p className="text-2xl font-bold text-gh-fg dark:text-white">300 — 800 мм</p>
               </div>
               <div>
                 <p className="mb-1 font-semibold text-amber-400">Максимальна глибина</p>
-                <p className="text-2xl font-bold text-white">25 метрів</p>
+                <p className="text-2xl font-bold text-gh-fg dark:text-white">25 метрів</p>
               </div>
               <div>
                 <p className="mb-1 font-semibold text-amber-400">Тип буріння</p>
-                <p className="text-2xl font-bold text-white">CFA + Обсадні труби</p>
+                <p className="text-2xl font-bold text-gh-fg dark:text-white">CFA + Обсадні труби</p>
               </div>
               <div>
                 <p className="mb-1 font-semibold text-amber-400">Продуктивність</p>
-                <p className="text-2xl font-bold text-white">До 12 паль за зміну</p>
+                <p className="text-2xl font-bold text-gh-fg dark:text-white">До 12 паль за зміну</p>
               </div>
             </div>
           </Reveal>
