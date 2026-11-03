@@ -45,6 +45,12 @@ export async function POST(req: NextRequest) {
 ${extraLines}
     `
 
+    // Local testing: CONTACT_DRY_RUN=1 npm run dev logs the lead instead of sending it
+    if (process.env.CONTACT_DRY_RUN === '1' && process.env.NODE_ENV !== 'production') {
+      console.log('[CONTACT_DRY_RUN] Telegram message not sent:', message)
+      return NextResponse.json({ success: true })
+    }
+
     const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`
 
     const telegramResponse = await fetch(telegramUrl, {
