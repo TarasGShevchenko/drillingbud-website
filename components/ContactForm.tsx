@@ -100,6 +100,8 @@ export default function ContactForm() {
       <div className="mt-12">
         {submitted ? (
           <motion.div
+            // Shorter than the form it replaces, so it can land above the screen
+            ref={(el) => el?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             className="rounded-3xl border border-emerald-500/30 bg-emerald-900/50 py-16 text-center"
