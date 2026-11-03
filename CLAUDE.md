@@ -62,6 +62,10 @@ All user-facing copy is Ukrainian. Leads go to the owner's Telegram; there is no
   or client code.
 - SEO matters for this business: don't change `metadata`, JSON-LD, page URLs, heading
   hierarchy, or `force-static` unless the task is about that.
+- Branches: `feature/*` → PR → `staging` (Vercel Preview, https://staging.drillingbud.com.ua)
+  → PR → `master` (production). Merge commits only. Preview builds send
+  `X-Robots-Tag: noindex, nofollow` (`headers()` in `next.config.ts`, `VERCEL_ENV === 'preview'`)
+  so staging is never indexed; Vercel doesn't do this for custom domains. Keep it.
 - Business facts are duplicated. Pile specs (300–800 mm, up to 25 m, CFA + casing, up to 12
   piles/shift) appear in `app/layout.tsx`, `app/page.tsx`, `EquipmentsInfo.tsx`,
   `MainCalculation.tsx` (placeholders) and
