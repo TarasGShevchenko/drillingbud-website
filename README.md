@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Drilling Bud — website
 
-## Getting Started
+Marketing website for **Drilling Bud**, a bored pile / CFA foundation contractor in Kyiv.
+The site is in Ukrainian; leads from the contact forms are sent to the owner's Telegram.
 
-First, run the development server:
+- Production: https://www.drillingbud.com.ua (branch `master`)
+- Staging: https://staging.drillingbud.com.ua (branch `staging`, not indexed by search engines)
+
+## Stack
+
+- [Next.js 16](https://nextjs.org) (App Router, static pages) + React 19 with the React Compiler
+- TypeScript, Tailwind CSS v4
+- framer-motion (animations), Swiper (sliders), lucide-react (icons), libphonenumber-js
+- Hosted on [Vercel](https://vercel.com); light and dark theme
+
+## Getting started
+
+Requirements: Node.js 20.9 or newer.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # then fill in the values
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To try the contact forms locally without sending anything to Telegram:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+CONTACT_DRY_RUN=1 npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The API then logs the message it would send and returns success. This mode never applies to
+production builds, including Vercel deployments.
 
-## Learn More
+## Environment variables
 
-To learn more about Next.js, take a look at the following resources:
+See [`.env.example`](.env.example). Never commit `.env.local`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Variable               | Purpose                                                                                                      |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `NEXT_PUBLIC_BASE_URL` | Site URL without a trailing slash, used for metadata, canonical URLs and the sitemap. Required at build time |
+| `NEXT_PUBLIC_PHONE`    | Phone number shown on the site                                                                               |
+| `NEXT_PUBLIC_EMAIL`    | Email shown on the site                                                                                      |
+| `TELEGRAM_BOT_TOKEN`   | Bot that sends leads (server only)                                                                           |
+| `TELEGRAM_CHAT_ID`     | Chat that receives leads (server only)                                                                       |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+On Vercel, **Production** uses the real values. **Preview** (staging and feature branches) uses
+the staging URL and a separate staging bot and chat, so test leads never reach the owner.
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Command                        | What it does                                                         |
+| ------------------------------ | -------------------------------------------------------------------- |
+| `npm run dev`                  | Development server                                                   |
+| `npm run lint`                 | ESLint                                                               |
+| `npx tsc --noEmit`             | Type check                                                           |
+| `npx prettier --write <files>` | Format changed files                                                 |
+| `npm run build`                | Production build, then `next-sitemap` (needs `NEXT_PUBLIC_BASE_URL`) |
+| `npm start`                    | Serve the production build                                           |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project structure
+
+```
+app/                 routes (/, /equipments, /contacts), layout, sitemap, robots
+app/api/contact/     POST { name, phone, ... } → Telegram (the only server code)
+components/          page sections (MainPage/, EquipmentsPage/, ContacsPage/) and shared components
+utils/               SEO structured data, phone helpers, theme script
+public/img/          images (.webp)
+```
+
+## Workflow
+
+```
+feature/* ──PR──► staging ──PR──► master
+               (staging site)   (production)
+```
+
+1. Branch off `staging`: `feature/<short-name>`.
+2. Open a pull request into `staging` and merge it. Vercel updates the staging site.
+3. Once the changes are approved on staging, open a pull request from `staging` into `master`.
+   Merging it deploys to production.
+
+`master` and `staging` are protected: changes go in through pull requests only, and there is no
+force pushing or deleting. Use **Create a merge commit**; squash and rebase merges would make the
+branches diverge.
+
+Preview deployments send `X-Robots-Tag: noindex, nofollow` (see `next.config.ts`), so staging
+never shows up in search results. Production is not affected.
