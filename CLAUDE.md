@@ -56,7 +56,8 @@ All user-facing copy is Ukrainian. Leads go to the owner's Telegram; there is no
 - SEO matters for this business: don't change `metadata`, JSON-LD, page URLs, heading
   hierarchy, or `force-static` unless the task is about that.
 - Business facts are duplicated. Pile specs (300–800 mm, up to 25 m, CFA + casing, up to 12
-  piles/shift) appear in `app/layout.tsx`, `app/page.tsx`, `EquipmentsInfo.tsx` and
+  piles/shift) appear in `app/layout.tsx`, `app/page.tsx`, `EquipmentsInfo.tsx`,
+  `MainCalculation.tsx` (placeholders) and
   `structured-data.ts`. Service area appears in `Footer.tsx` and `structured-data.ts`. The phone
   comes from `NEXT_PUBLIC_PHONE`, except `localBusinessSchema.telephone`, which is hardcoded.
   When changing a fact, grep for every copy, and tell the user if they disagree.

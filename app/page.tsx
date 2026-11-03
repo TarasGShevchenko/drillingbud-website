@@ -1,6 +1,12 @@
 import type { Metadata } from 'next'
 
-import { MainHero, MainDescription, MainEquipments, MainContact } from '@/components'
+import {
+  MainHero,
+  MainDescription,
+  MainEquipments,
+  MainCalculation,
+  MainContact,
+} from '@/components'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
@@ -24,6 +30,7 @@ export default function Home() {
         reverse
       />
       <MainEquipments />
+      <MainCalculation />
       <MainContact />
     </main>
   )

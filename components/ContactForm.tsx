@@ -1,16 +1,22 @@
 'use client'
 
 import { ChangeEvent, SubmitEvent, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { isValidPhoneNumber } from 'libphonenumber-js/max'
+import { motion } from 'framer-motion'
 
-import { Reveal } from '@/components'
+import { FieldError, Reveal } from '@/components'
+import { formatPhoneNumber, getPhoneError } from '@/utils'
+
+const CALL_TIMES = ['Зараз', 'Сьогодні', 'Завтра']
+
+const initialFormData = {
+  name: '',
+  phone: '',
+  callTime: CALL_TIMES[0],
+  comment: '',
+}
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-  })
+  const [formData, setFormData] = useState(initialFormData)
 
   const [errors, setErrors] = useState({
     name: '',
@@ -19,24 +25,6 @@ export default function ContactForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-
-  const formatPhoneNumber = (value: string) => {
-    let phone = value.replace(/\D/g, '')
-
-    if (phone.startsWith('0')) {
-      phone = '380' + phone.slice(1)
-    } else if (phone.length > 0 && !phone.startsWith('38')) {
-      phone = '38' + phone
-    }
-
-    if (phone.length <= 3) return '+' + phone
-    if (phone.length <= 5) return `+${phone.slice(0, 3)} ${phone.slice(3)}`
-    if (phone.length <= 8) return `+${phone.slice(0, 3)} ${phone.slice(3, 5)} ${phone.slice(5)}`
-    if (phone.length <= 10)
-      return `+${phone.slice(0, 3)} ${phone.slice(3, 5)} ${phone.slice(5, 8)} ${phone.slice(8)}`
-
-    return `+${phone.slice(0, 3)} ${phone.slice(3, 5)} ${phone.slice(5, 8)} ${phone.slice(8, 10)} ${phone.slice(10, 12)}`
-  }
 
   const handlePhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhoneNumber(e.target.value)
@@ -47,7 +35,7 @@ export default function ContactForm() {
     }
   }
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
 
@@ -57,32 +45,13 @@ export default function ContactForm() {
   }
 
   const validateForm = () => {
-    const newErrors = { name: '', phone: '' }
-    let isValid = true
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Введіть ваше ім'я"
-      isValid = false
-    }
-
-    if (!formData.phone.trim()) {
-      newErrors.phone = 'Введіть номер телефону'
-      isValid = false
-    } else {
-      try {
-        const isValidUA = isValidPhoneNumber(formData.phone, 'UA')
-        if (!isValidUA) {
-          newErrors.phone = 'Введіть коректний український номер'
-          isValid = false
-        }
-      } catch {
-        newErrors.phone = 'Невірний формат номера'
-        isValid = false
-      }
+    const newErrors = {
+      name: formData.name.trim() ? '' : "Введіть ваше ім'я",
+      phone: getPhoneError(formData.phone),
     }
 
     setErrors(newErrors)
-    return isValid
+    return !newErrors.name && !newErrors.phone
   }
 
   const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
@@ -97,7 +66,7 @@ export default function ContactForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ type: 'callback', ...formData }),
       })
 
       if (!response.ok) {
@@ -108,7 +77,7 @@ export default function ContactForm() {
 
       setTimeout(() => {
         setSubmitted(false)
-        setFormData({ name: '', phone: '' })
+        setFormData(initialFormData)
         setErrors({ name: '', phone: '' })
       }, 4000)
     } catch (error) {
@@ -152,19 +121,7 @@ export default function ContactForm() {
                   errors.name ? 'border-red-500' : 'border-zinc-700 focus:border-white/50'
                 }`}
               />
-              <AnimatePresence initial={false}>
-                {errors.name && (
-                  <motion.p
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.2, ease: 'easeOut' }}
-                    className="overflow-hidden pt-1.5 text-left text-sm text-red-500"
-                  >
-                    {errors.name}
-                  </motion.p>
-                )}
-              </AnimatePresence>
+              <FieldError message={errors.name} />
             </Reveal>
 
             <Reveal delay={0.1}>
@@ -178,20 +135,46 @@ export default function ContactForm() {
                   errors.phone ? 'border-red-500' : 'border-zinc-700 focus:border-white/50'
                 }`}
               />
-              <AnimatePresence initial={false}>
-                {errors.phone && (
-                  <motion.p
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.2, ease: 'easeOut' }}
-                    className="overflow-hidden pt-1.5 text-left text-sm text-red-500"
-                  >
-                    {errors.phone}
-                  </motion.p>
-                )}
-              </AnimatePresence>
+              <FieldError message={errors.phone} />
             </Reveal>
+
+            <Reveal delay={0.1}>
+              <fieldset>
+                <legend className="mb-3 text-left text-zinc-400">
+                  Коли вам зручно поговорити?
+                </legend>
+                <div className="grid grid-cols-3 gap-3">
+                  {CALL_TIMES.map((time) => (
+                    <label key={time} className="cursor-pointer">
+                      <input
+                        type="radio"
+                        name="callTime"
+                        value={time}
+                        checked={formData.callTime === time}
+                        onChange={handleChange}
+                        className="peer sr-only"
+                      />
+                      <span className="block rounded-2xl border border-zinc-700 bg-zinc-800 py-3 text-lg transition peer-checked:border-amber-400 peer-checked:text-amber-400 peer-focus-visible:border-white/50 hover:border-zinc-500">
+                        {time}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            </Reveal>
+
+            <Reveal delay={0.2}>
+              <textarea
+                name="comment"
+                value={formData.comment}
+                onChange={handleChange}
+                rows={3}
+                maxLength={1000}
+                placeholder="Коментар (необов'язково)"
+                className="w-full resize-none rounded-2xl border border-zinc-700 bg-zinc-800 px-6 py-4 text-lg transition focus:border-white/50 focus:outline-none"
+              />
+            </Reveal>
+
             <Reveal delay={0.2}>
               <button
                 type="submit"

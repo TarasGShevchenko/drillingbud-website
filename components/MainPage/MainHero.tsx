@@ -1,9 +1,9 @@
 'use client'
 import Image from 'next/image'
-import { Phone } from 'lucide-react'
+import { Calculator, Phone } from 'lucide-react'
 
 import { Reveal } from '@/components'
-import { goToContacts } from '@/utils'
+import { goToCalculate, goToContacts } from '@/utils'
 
 const PHONE = process.env.NEXT_PUBLIC_PHONE
 
@@ -37,20 +37,28 @@ export default function MainHero() {
         <Reveal
           onMount
           delay={0.3}
-          className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+          className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap"
         >
           <button
             onClick={goToContacts}
-            className="group inline-flex items-center gap-3 rounded-full bg-white px-10 py-4 text-lg font-semibold text-black transition-all duration-300 hover:bg-amber-400 hover:shadow-xl hover:shadow-amber-400/30 active:scale-95"
+            className="group inline-flex items-center gap-3 rounded-full bg-white px-6 py-4 text-lg font-semibold text-black transition-all duration-300 hover:bg-amber-400 hover:shadow-xl hover:shadow-amber-400/30 active:scale-95"
           >
             Замовити дзвінок
             <span className="text-xl transition-transform group-hover:rotate-12">📞</span>
           </button>
 
+          <button
+            onClick={goToCalculate}
+            className="inline-flex items-center gap-3 rounded-full border border-amber-400 px-6 py-4 text-lg font-semibold text-amber-400 transition-all duration-300 hover:bg-amber-400 hover:text-black active:scale-95"
+          >
+            <Calculator size={20} />
+            Розрахувати вартість
+          </button>
+
           {PHONE && (
             <a
               href={`tel:${PHONE}`}
-              className="inline-flex items-center gap-3 rounded-full border border-white/40 px-10 py-4 text-lg font-semibold text-white transition-all duration-300 hover:border-amber-400 hover:text-amber-400 active:scale-95"
+              className="inline-flex items-center gap-3 rounded-full border border-white/40 px-6 py-4 text-lg font-semibold text-white transition-all duration-300 hover:border-amber-400 hover:text-amber-400 active:scale-95"
             >
               <Phone size={20} />
               {PHONE}

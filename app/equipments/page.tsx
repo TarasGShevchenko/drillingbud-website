@@ -5,6 +5,7 @@ import {
   EquipmentsInfo,
   EquipmentsTech,
   EquipmentsWorks,
+  MainCalculation,
   MainContact,
 } from '@/components'
 import { sharedOpenGraph } from '@/utils'
@@ -36,6 +37,7 @@ export default function Equipments() {
       <EquipmentsInfo />
       <EquipmentsTech />
       <EquipmentsWorks />
+      <MainCalculation />
       <MainContact />
     </>
   )

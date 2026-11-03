@@ -2,6 +2,7 @@ import MainHero from '@/components/MainPage/MainHero'
 import MainDescription from '@/components/MainPage/MainDescription'
 import MainEquipments from '@/components/MainPage/MainEquipments'
 import MainContact from '@/components/MainPage/MainContact'
+import MainCalculation from '@/components/MainPage/MainCalculation'
 
 import EquipmentsHero from '@/components/EquipmentsPage/EquipmentsHero'
 import EquipmentsInfo from '@/components/EquipmentsPage/EquipmentsInfo'
@@ -16,6 +17,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import EquipmentsSlider from '@/components/EquipmentsSlider'
 import ContactForm from '@/components/ContactForm'
+import FieldError from '@/components/FieldError'
 import MotionProvider from '@/components/MotionProvider'
 import Reveal from '@/components/Reveal'
 
@@ -27,6 +29,7 @@ export {
   MainDescription,
   MainEquipments,
   MainContact,
+  MainCalculation,
   // equipments
   EquipmentsHero,
   EquipmentsInfo,
@@ -41,6 +44,7 @@ export {
   // ...rest
   EquipmentsSlider,
   ContactForm,
+  FieldError,
   MotionProvider,
   Reveal,
 }
