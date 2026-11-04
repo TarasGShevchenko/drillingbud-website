@@ -8,8 +8,8 @@ import 'swiper/css'
 export default function EquipmentsSlider({ images }: { images: string[] }) {
   return (
     <div className="relative overflow-hidden">
-      <div className="pointer-events-none absolute top-0 left-0 z-20 h-full w-8 bg-gradient-to-r from-black via-black to-transparent md:w-12" />
-      <div className="pointer-events-none absolute top-0 right-0 z-20 h-full w-8 bg-gradient-to-l from-black via-black to-transparent md:w-12" />
+      <div className="pointer-events-none absolute top-0 left-0 z-20 h-full w-8 bg-gradient-to-r from-white via-white to-transparent md:w-12 dark:from-black dark:via-black" />
+      <div className="pointer-events-none absolute top-0 right-0 z-20 h-full w-8 bg-gradient-to-l from-white via-white to-transparent md:w-12 dark:from-black dark:via-black" />
       <Swiper
         modules={[Autoplay]}
         loop
@@ -38,7 +38,7 @@ export default function EquipmentsSlider({ images }: { images: string[] }) {
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <div className="relative h-[420px] overflow-hidden rounded-[32px] bg-zinc-900 shadow-2xl md:h-[520px]">
+            <div className="relative h-[420px] overflow-hidden rounded-[32px] bg-gh-subtle shadow-2xl md:h-[520px] dark:bg-zinc-900">
               <Image
                 src={image}
                 alt={`Equipment ${index}`}
@@ -47,8 +47,6 @@ export default function EquipmentsSlider({ images }: { images: string[] }) {
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                 className="object-cover transition duration-700 hover:scale-105"
               />
-
-              <div className="absolute inset-0 bg-black/10" />
             </div>
           </SwiperSlide>
         ))}

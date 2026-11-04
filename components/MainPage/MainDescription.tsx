@@ -24,7 +24,7 @@ export default function MainDescription({
     return null
   }
   return (
-    <section className="bg-zinc-950 py-16 md:py-20">
+    <section className="bg-white py-16 md:py-20 dark:bg-zinc-950">
       <div className="mx-auto max-w-6xl px-6">
         <div
           className={`grid grid-cols-1 items-center gap-12 md:gap-16 lg:gap-20 ${reverse ? 'md:grid-cols-2' : 'md:grid-cols-2'}`}
@@ -32,10 +32,12 @@ export default function MainDescription({
           <Reveal
             className={`order-2 flex flex-col justify-center ${reverse ? 'md:order-2' : 'md:order-1'}`}
           >
-            <h2 className="text-4xl font-bold tracking-tight break-words text-white md:text-5xl">
+            <h2 className="text-4xl font-bold tracking-tight break-words text-gh-fg md:text-5xl dark:text-white">
               {title}
             </h2>
-            <p className="mt-6 text-lg leading-relaxed text-zinc-400">{description}</p>
+            <p className="mt-6 text-lg leading-relaxed text-gh-muted dark:text-zinc-400">
+              {description}
+            </p>
           </Reveal>
 
           <Reveal

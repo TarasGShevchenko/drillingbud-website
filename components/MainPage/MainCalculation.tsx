@@ -19,7 +19,7 @@ const initialFormData = {
 }
 
 const inputClass =
-  'w-full rounded-2xl border bg-zinc-800 px-5 py-3.5 text-lg transition focus:outline-none'
+  'w-full rounded-2xl border bg-white dark:bg-zinc-800 px-5 py-3.5 text-lg transition focus:outline-none'
 
 export default function MainCalculation() {
   const [formData, setFormData] = useState(initialFormData)
@@ -95,13 +95,13 @@ export default function MainCalculation() {
   }
 
   return (
-    <section id="calculate" className="bg-zinc-950 py-20 md:py-28">
+    <section id="calculate" className="bg-white py-20 md:py-28 dark:bg-zinc-950">
       <div className="mx-auto max-w-4xl px-6">
         <Reveal className="text-center">
-          <h2 className="text-4xl font-bold text-white md:text-5xl">
+          <h2 className="text-4xl font-bold text-gh-fg md:text-5xl dark:text-white">
             Безкоштовний розрахунок вартості
           </h2>
-          <p className="mt-4 text-lg text-zinc-400">
+          <p className="mt-4 text-lg text-gh-muted dark:text-zinc-400">
             Вкажіть параметри паль — порахуємо вартість і зателефонуємо з пропозицією
           </p>
         </Reveal>
@@ -122,13 +122,13 @@ export default function MainCalculation() {
           <Reveal className="mt-12">
             <form
               onSubmit={handleSubmit}
-              className="grid gap-10 rounded-3xl border border-zinc-800 bg-zinc-900 p-6 md:grid-cols-2 md:p-10"
+              className="grid gap-10 rounded-3xl border border-zinc-800 bg-gh-subtle p-6 md:grid-cols-2 md:p-10 dark:bg-zinc-900"
             >
               <div className="space-y-5">
-                <p className="text-xl font-semibold text-white">Параметри паль</p>
+                <p className="text-xl font-semibold text-gh-fg dark:text-white">Параметри паль</p>
 
                 <fieldset>
-                  <legend className="mb-3 text-zinc-400">Тип палі</legend>
+                  <legend className="mb-3 text-gh-muted dark:text-zinc-400">Тип палі</legend>
                   <div className="space-y-2">
                     {PILE_TYPES.map((type) => (
                       <label key={type} className="block cursor-pointer">
@@ -140,7 +140,7 @@ export default function MainCalculation() {
                           onChange={handleChange}
                           className="peer sr-only"
                         />
-                        <span className="block rounded-2xl border border-zinc-700 bg-zinc-800 px-5 py-3 transition peer-checked:border-amber-400 peer-checked:text-amber-400 peer-focus-visible:border-white/50 hover:border-zinc-500">
+                        <span className="block rounded-2xl border border-zinc-700 bg-white px-5 py-3 transition peer-checked:border-amber-400 peer-checked:text-amber-400 peer-focus-visible:border-white/50 hover:border-zinc-500 dark:bg-zinc-800">
                           {type}
                         </span>
                       </label>
@@ -149,7 +149,9 @@ export default function MainCalculation() {
                 </fieldset>
 
                 <label className="block">
-                  <span className="mb-2 block text-zinc-400">Кількість паль</span>
+                  <span className="mb-2 block text-gh-muted dark:text-zinc-400">
+                    Кількість паль
+                  </span>
                   <input
                     type="number"
                     name="pileCount"
@@ -164,7 +166,7 @@ export default function MainCalculation() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <label className="block">
-                    <span className="mb-2 block text-zinc-400">Діаметр, мм</span>
+                    <span className="mb-2 block text-gh-muted dark:text-zinc-400">Діаметр, мм</span>
                     <input
                       type="number"
                       name="diameter"
@@ -172,12 +174,12 @@ export default function MainCalculation() {
                       inputMode="numeric"
                       value={formData.diameter}
                       onChange={handleChange}
-                      placeholder="300–800"
+                      placeholder="300–1500"
                       className={`${inputClass} border-zinc-700 focus:border-white/50`}
                     />
                   </label>
                   <label className="block">
-                    <span className="mb-2 block text-zinc-400">Глибина, м</span>
+                    <span className="mb-2 block text-gh-muted dark:text-zinc-400">Глибина, м</span>
                     <input
                       type="number"
                       name="depth"
@@ -193,7 +195,7 @@ export default function MainCalculation() {
               </div>
 
               <div className="flex flex-col gap-5">
-                <p className="text-xl font-semibold text-white">Ваші контакти</p>
+                <p className="text-xl font-semibold text-gh-fg dark:text-white">Ваші контакти</p>
 
                 <div>
                   <input
@@ -237,11 +239,11 @@ export default function MainCalculation() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full rounded-2xl bg-white py-4 text-lg font-semibold text-black transition-all hover:bg-amber-400 disabled:opacity-70"
+                    className="w-full rounded-2xl bg-black py-4 text-lg font-semibold text-white transition-all hover:bg-amber-400 hover:text-black disabled:opacity-70 dark:bg-white dark:text-black"
                   >
                     {isSubmitting ? 'Відправляємо...' : 'Розрахувати вартість'}
                   </button>
-                  <p className="mt-4 text-center text-xs text-zinc-500">
+                  <p className="mt-4 text-center text-xs text-gh-muted dark:text-zinc-500">
                     Натискаючи кнопку, ви погоджуєтесь на обробку персональних даних
                   </p>
                 </div>
