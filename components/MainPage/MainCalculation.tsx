@@ -174,7 +174,7 @@ export default function MainCalculation() {
                       inputMode="numeric"
                       value={formData.diameter}
                       onChange={handleChange}
-                      placeholder="300–800"
+                      placeholder="300–1500"
                       className={`${inputClass} border-zinc-700 focus:border-white/50`}
                     />
                   </label>
