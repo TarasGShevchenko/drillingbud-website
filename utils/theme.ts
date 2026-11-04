@@ -9,7 +9,10 @@ export const themeScript = `(function () {
   try {
     var root = document.documentElement
     var media = window.matchMedia('(prefers-color-scheme: dark)')
-    var saved = function () { return localStorage.getItem('${THEME_STORAGE_KEY}') }
+    // Storage can throw (cookies/site data blocked): treat it as "no saved choice"
+    var saved = function () {
+      try { return localStorage.getItem('${THEME_STORAGE_KEY}') } catch (e) { return null }
+    }
     var apply = function () {
       var theme = saved()
       root.classList.toggle('dark', theme ? theme === 'dark' : media.matches)
