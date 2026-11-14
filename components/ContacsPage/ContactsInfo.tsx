@@ -1,6 +1,7 @@
 'use client'
 
 import { Clock, Mail, Phone } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 import { ContactForm, Reveal } from '@/components'
 
@@ -8,13 +9,18 @@ const EMAIL = process.env.NEXT_PUBLIC_EMAIL
 const PHONE = process.env.NEXT_PUBLIC_PHONE
 
 export default function ContactsInfo() {
+  const t = useTranslations('Contacts')
+  const highlight = (chunks: React.ReactNode) => (
+    <span className="text-gh-fg dark:text-white">{chunks}</span>
+  )
+
   return (
     <div className="mx-auto max-w-6xl px-6 py-16">
       <div className="grid gap-16 lg:grid-cols-2">
         <div className="flex flex-col lg:pl-8">
           <div className="mx-auto max-w-md lg:mx-0">
             <Reveal as="h2" className="mb-10 text-center text-3xl font-bold lg:text-left">
-              Наші контакти
+              {t('infoTitle')}
             </Reveal>
 
             <div className="space-y-10">
@@ -23,14 +29,14 @@ export default function ContactsInfo() {
                   <Phone className="h-6 w-6 text-amber-400" />
                 </div>
                 <div>
-                  <p className="text-lg font-semibold">Телефон</p>
+                  <p className="text-lg font-semibold">{t('phone')}</p>
                   <a
                     href={`tel:${PHONE}`}
                     className="text-2xl text-gh-fg transition-colors hover:text-amber-400 dark:text-white"
                   >
                     {PHONE}
                   </a>
-                  <p className="mt-1 text-gh-muted dark:text-zinc-400">Дзвінки з 5:00</p>
+                  <p className="mt-1 text-gh-muted dark:text-zinc-400">{t('callsFrom')}</p>
                 </div>
               </Reveal>
 
@@ -39,7 +45,7 @@ export default function ContactsInfo() {
                   <Mail className="h-6 w-6 text-amber-400" />
                 </div>
                 <div>
-                  <p className="text-lg font-semibold">Email</p>
+                  <p className="text-lg font-semibold">{t('email')}</p>
                   <a
                     href={`mailto:${EMAIL}`}
                     className="text-xl text-gh-fg transition-colors hover:text-amber-400 dark:text-white"
@@ -54,11 +60,11 @@ export default function ContactsInfo() {
                   <Clock className="h-6 w-6 text-amber-400" />
                 </div>
                 <div>
-                  <p className="text-lg font-semibold">Графік роботи</p>
+                  <p className="text-lg font-semibold">{t('hours')}</p>
                   <p className="text-gh-muted dark:text-zinc-400">
-                    Працюємо <span className="text-gh-fg dark:text-white">цілодобово</span>
+                    {t.rich('hoursAllDay', { b: highlight })}
                     <br />
-                    Пн — Нд: <span className="text-gh-fg dark:text-white">5:00 — 22:00</span>
+                    {t.rich('hoursDays', { b: highlight })}
                   </p>
                 </div>
               </Reveal>

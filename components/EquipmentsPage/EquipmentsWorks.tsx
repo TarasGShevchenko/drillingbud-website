@@ -1,40 +1,38 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { Reveal } from '@/components'
 
 export default function EquipmentsWorks() {
+  const t = useTranslations('Equipments')
+
   return (
     <section className="bg-gh-subtle py-20 dark:bg-zinc-900">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-12 text-center">
           <Reveal as="h2" className="mb-4 text-4xl font-bold">
-            Чому обирають наше обладнання
+            {t('whyTitle')}
           </Reveal>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
           <Reveal className="rounded-3xl bg-white p-8 dark:bg-zinc-800">
             <div className="mb-4 text-4xl">🚜</div>
-            <h3 className="mb-3 text-xl font-semibold">Потужна техніка</h3>
-            <p className="text-gh-muted dark:text-zinc-400">
-              Сучасні бурові установки з високою прохідністю та точністю.
-            </p>
+            <h3 className="mb-3 text-xl font-semibold">{t('powerTitle')}</h3>
+            <p className="text-gh-muted dark:text-zinc-400">{t('powerText')}</p>
           </Reveal>
 
           <Reveal delay={0.1} className="rounded-3xl bg-white p-8 dark:bg-zinc-800">
             <div className="mb-4 text-4xl">🛡️</div>
-            <h3 className="mb-3 text-xl font-semibold">Контроль якості</h3>
-            <p className="text-gh-muted dark:text-zinc-400">
-              Постійний технічний нагляд та документування кожного етапу.
-            </p>
+            <h3 className="mb-3 text-xl font-semibold">{t('qualityTitle')}</h3>
+            <p className="text-gh-muted dark:text-zinc-400">{t('qualityText')}</p>
           </Reveal>
 
           <Reveal delay={0.2} className="rounded-3xl bg-white p-8 dark:bg-zinc-800">
             <div className="mb-4 text-4xl">⚡</div>
-            <h3 className="mb-3 text-xl font-semibold">Швидкість</h3>
-            <p className="text-gh-muted dark:text-zinc-400">
-              Мобільні бригади готові до роботи в день звернення.
-            </p>
+            <h3 className="mb-3 text-xl font-semibold">{t('speedTitle')}</h3>
+            <p className="text-gh-muted dark:text-zinc-400">{t('speedText')}</p>
           </Reveal>
         </div>
       </div>

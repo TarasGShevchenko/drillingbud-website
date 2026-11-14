@@ -19,13 +19,16 @@ export const formatPhoneNumber = (value: string) => {
   return `+${phone.slice(0, 3)} ${phone.slice(3, 5)} ${phone.slice(5, 8)} ${phone.slice(8, 10)} ${phone.slice(10, 12)}`
 }
 
-// Returns a validation message, or '' when the number is a valid Ukrainian one
-export const getPhoneError = (phone: string) => {
-  if (!phone.trim()) return 'Введіть номер телефону'
+// Message key in the `Form` translations
+export type PhoneError = '' | 'phoneRequired' | 'phoneInvalid' | 'phoneFormat'
+
+// Returns the key of a validation message, or '' when the number is a valid Ukrainian one
+export const getPhoneError = (phone: string): PhoneError => {
+  if (!phone.trim()) return 'phoneRequired'
 
   try {
-    return isValidPhoneNumber(phone, 'UA') ? '' : 'Введіть коректний український номер'
+    return isValidPhoneNumber(phone, 'UA') ? '' : 'phoneInvalid'
   } catch {
-    return 'Невірний формат номера'
+    return 'phoneFormat'
   }
 }
