@@ -1,41 +1,45 @@
 'use client'
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
 const EMAIL = process.env.NEXT_PUBLIC_EMAIL
 const PHONE = process.env.NEXT_PUBLIC_PHONE
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
+  const t = useTranslations('Footer')
 
   return (
     <footer className="border-t border-zinc-900 bg-white pt-16 pb-10 dark:bg-zinc-950">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
-            <h3 className="mb-4 text-2xl font-bold">Про Нас</h3>
+            <h3 className="mb-4 text-2xl font-bold">{t('about')}</h3>
             <p className="max-w-xs text-gh-muted dark:text-zinc-400">
-              Улаштування буронабивних паль любої складності!
+              {t('aboutText1')}
               <br />
-              Працюемо в Киеві, Київскій області!
+              {t('aboutText2')}
               <br />
-              Можливий виїзд в Черкаси, Чернігів та Житомир, а також по всій Україні!
+              {t('aboutText3')}
               <br />
             </p>
           </div>
 
           <div>
-            <h4 className="mb-4 text-lg font-semibold text-gh-fg dark:text-white">Графік роботи</h4>
+            <h4 className="mb-4 text-lg font-semibold text-gh-fg dark:text-white">{t('hours')}</h4>
             <div className="flex flex-col gap-3 text-gh-muted dark:text-zinc-400">
-              Працюємо цілодобово, 7 днів на тиждень.
+              {t('hoursText1')}
               <br />
               <br />
-              Пн - Нд: 5:00 - 22:00
+              {t('hoursText2')}
               <br />
             </div>
           </div>
 
           <div>
-            <h4 className="mb-4 text-lg font-semibold text-gh-fg dark:text-white">Звязок</h4>
+            <h4 className="mb-4 text-lg font-semibold text-gh-fg dark:text-white">
+              {t('contact')}
+            </h4>
 
             <div className="mb-8 flex flex-col gap-3 text-gh-muted dark:text-zinc-400">
               <a

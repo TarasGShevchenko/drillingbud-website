@@ -21,6 +21,7 @@ import FieldError from '@/components/FieldError'
 import MotionProvider from '@/components/MotionProvider'
 import Reveal from '@/components/Reveal'
 import ThemeSwitcher from '@/components/ThemeSwitcher'
+import LanguageSwitcher from '@/components/LanguageSwitcher'
 
 export {
   // nav bar
@@ -49,4 +50,5 @@ export {
   MotionProvider,
   Reveal,
   ThemeSwitcher,
+  LanguageSwitcher,
 }

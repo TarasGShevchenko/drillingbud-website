@@ -1,17 +1,19 @@
 'use client'
 
-import Link from 'next/link'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, Phone, X } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
-import { ThemeSwitcher } from '@/components'
+import { LanguageSwitcher, ThemeSwitcher } from '@/components'
 import { navLinks } from '@/constants'
+import { Link } from '@/i18n/navigation'
 
 const PHONE = process.env.NEXT_PUBLIC_PHONE
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const t = useTranslations('Nav')
 
   return (
     <>
@@ -38,12 +40,12 @@ export default function Navbar() {
                 href={link.href}
                 className="text-gh-fg/80 transition-colors duration-300 hover:text-gh-fg dark:text-white/80 dark:hover:text-white"
               >
-                {link.label}
+                {t(link.key)}
               </Link>
             ))}
           </div>
 
-          {/* DESKTOP PHONE + SETTINGS (theme; a language switcher goes next to it) */}
+          {/* DESKTOP PHONE + SETTINGS (theme, language) */}
           <div className="hidden flex-shrink-0 items-center gap-6 lg:flex">
             {PHONE && (
               <a
@@ -55,6 +57,7 @@ export default function Navbar() {
               </a>
             )}
             <ThemeSwitcher />
+            <LanguageSwitcher />
           </div>
 
           {/* MOBILE BUTTONS */}
@@ -62,7 +65,7 @@ export default function Navbar() {
             {PHONE && (
               <a
                 href={`tel:${PHONE}`}
-                aria-label={`Зателефонувати ${PHONE}`}
+                aria-label={t('call', { phone: PHONE })}
                 className="text-amber-400 transition-colors hover:text-gh-fg dark:hover:text-white"
               >
                 <Phone size={24} />
@@ -70,7 +73,7 @@ export default function Navbar() {
             )}
             <button
               onClick={() => setIsOpen(true)}
-              aria-label="Відкрити меню"
+              aria-label={t('openMenu')}
               className="text-gh-fg dark:text-white"
             >
               <Menu size={28} />
@@ -88,15 +91,16 @@ export default function Navbar() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-gh-subtle/95 backdrop-blur-2xl dark:bg-black/95"
           >
-            {/* SETTINGS (theme; a language switcher goes next to it), opposite the close button */}
+            {/* SETTINGS (theme, language), opposite the close button */}
             <div className="absolute top-6 left-6 flex h-9 items-center gap-5">
               <ThemeSwitcher size={28} />
+              <LanguageSwitcher className="text-xl" />
             </div>
 
             {/* CLOSE BUTTON */}
             <button
               onClick={() => setIsOpen(false)}
-              aria-label="Закрити меню"
+              aria-label={t('closeMenu')}
               className="absolute top-6 right-6 text-gh-fg dark:text-white"
             >
               <X size={36} />
@@ -118,7 +122,7 @@ export default function Navbar() {
                     onClick={() => setIsOpen(false)}
                     className="text-4xl font-semibold text-gh-fg transition-colors hover:text-gh-fg/70 dark:text-white dark:hover:text-white/70"
                   >
-                    {link.label}
+                    {t(link.key)}
                   </Link>
                 </motion.div>
               ))}

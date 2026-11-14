@@ -1,13 +1,17 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { EquipmentsSlider, Reveal } from '@/components'
 
 export default function EquipmentsWorks() {
+  const t = useTranslations('Equipments')
+
   return (
     <section className="bg-white py-16 dark:bg-black">
       <div className="mx-auto max-w-7xl px-6">
         <Reveal as="h2" className="mb-12 text-center text-4xl font-bold">
-          Наша техніка в роботі
+          {t('techTitle')}
         </Reveal>
       </div>
 

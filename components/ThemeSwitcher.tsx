@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from 'react'
 import { Moon, Sun } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 import { setTheme, Theme } from '@/utils'
 
@@ -20,9 +21,10 @@ const getServerTheme = () => null
 
 export default function ThemeSwitcher({ size = 20 }: { size?: number }) {
   const theme = useSyncExternalStore(subscribe, getTheme, getServerTheme)
+  const t = useTranslations('Nav')
 
   const next = theme === 'dark' ? 'light' : 'dark'
-  const label = theme === 'dark' ? 'Увімкнути світлу тему' : 'Увімкнути темну тему'
+  const label = theme === 'dark' ? t('lightTheme') : t('darkTheme')
 
   return (
     <button
