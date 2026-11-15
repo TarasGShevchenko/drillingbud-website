@@ -1,8 +1,12 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { Reveal } from '@/components'
 
 export default function EquipmentsHero() {
+  const t = useTranslations('Equipments')
+
   return (
     <section className="bg-white pt-28 pb-20 dark:bg-zinc-950">
       <div className="mx-auto max-w-6xl px-6 text-center">
@@ -11,7 +15,7 @@ export default function EquipmentsHero() {
           onMount
           className="mb-6 text-5xl font-bold text-gh-fg md:text-6xl dark:text-white"
         >
-          Наше обладнання
+          {t('heroTitle')}
         </Reveal>
         <Reveal
           as="p"
@@ -19,7 +23,7 @@ export default function EquipmentsHero() {
           delay={0.15}
           className="mx-auto max-w-3xl text-xl text-gh-muted dark:text-zinc-400"
         >
-          Сучасна техніка та обладнання для влаштування буронабивних паль будь-якої складності
+          {t('heroSubtitle')}
         </Reveal>
       </div>
     </section>

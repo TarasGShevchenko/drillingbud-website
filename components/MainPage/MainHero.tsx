@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image'
 import { Calculator, Phone } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 import { Reveal } from '@/components'
 import { goToCalculate, goToContacts } from '@/utils'
@@ -8,6 +9,8 @@ import { goToCalculate, goToContacts } from '@/utils'
 const PHONE = process.env.NEXT_PUBLIC_PHONE
 
 export default function MainHero() {
+  const t = useTranslations('Home')
+
   return (
     <section className="relative flex min-h-screen w-full items-center justify-center pt-20 pb-16">
       <Image
@@ -27,11 +30,11 @@ export default function MainHero() {
           onMount
           className="text-5xl leading-tight font-bold text-white md:text-7xl lg:text-[4.5rem]"
         >
-          Улаштування буронабивних паль
+          {t('heroTitle')}
         </Reveal>
 
         <Reveal as="p" onMount delay={0.15} className="mt-6 text-xl text-zinc-200 md:text-2xl">
-          Будь-якої складності
+          {t('heroSubtitle')}
         </Reveal>
 
         <Reveal
@@ -43,7 +46,7 @@ export default function MainHero() {
             onClick={goToContacts}
             className="group inline-flex items-center gap-3 rounded-full bg-white px-6 py-4 text-lg font-semibold text-black transition-all duration-300 hover:bg-amber-400 hover:shadow-xl hover:shadow-amber-400/30 active:scale-95"
           >
-            Замовити дзвінок
+            {t('heroCall')}
             <span className="text-xl transition-transform group-hover:rotate-12">📞</span>
           </button>
 
@@ -52,7 +55,7 @@ export default function MainHero() {
             className="inline-flex items-center gap-3 rounded-full border border-amber-400 px-6 py-4 text-lg font-semibold text-amber-400 transition-all duration-300 hover:bg-amber-400 hover:text-black active:scale-95"
           >
             <Calculator size={20} />
-            Розрахувати вартість
+            {t('heroCalculate')}
           </button>
 
           {PHONE && (

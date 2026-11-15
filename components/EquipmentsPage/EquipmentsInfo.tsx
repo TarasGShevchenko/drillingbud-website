@@ -1,23 +1,21 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { Reveal } from '@/components'
 
 export default function EquipmentsHero() {
+  const t = useTranslations('Equipments')
+
   return (
     <section className="bg-gh-subtle py-16 dark:bg-zinc-900">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid items-center gap-12 md:grid-cols-2">
           <Reveal>
-            <h2 className="mb-6 text-4xl font-bold">Сучасна техніка для надійних фундаментів</h2>
+            <h2 className="mb-6 text-4xl font-bold">{t('infoTitle')}</h2>
             <div className="space-y-5 text-lg text-gh-muted dark:text-zinc-400">
-              <p>
-                Ми використовуємо професійне бурове обладнання провідних виробників. Це дозволяє
-                виконувати роботи швидко, якісно та з мінімальним впливом на навколишнє середовище.
-              </p>
-              <p>
-                У нашому автопарку є бурові установки з можливістю буріння паль діаметром від 300 мм
-                до 800 мм та глибиною до 25 метрів.
-              </p>
+              <p>{t('infoText1')}</p>
+              <p>{t('infoText2')}</p>
             </div>
           </Reveal>
 
@@ -27,20 +25,26 @@ export default function EquipmentsHero() {
           >
             <div className="grid grid-cols-2 gap-6">
               <div>
-                <p className="mb-1 font-semibold text-amber-400">Діаметр паль</p>
-                <p className="text-2xl font-bold text-gh-fg dark:text-white">300 — 800 мм</p>
+                <p className="mb-1 font-semibold text-amber-400">{t('diameterLabel')}</p>
+                <p className="text-2xl font-bold text-gh-fg dark:text-white">
+                  {t('diameterValue')}
+                </p>
               </div>
               <div>
-                <p className="mb-1 font-semibold text-amber-400">Максимальна глибина</p>
-                <p className="text-2xl font-bold text-gh-fg dark:text-white">25 метрів</p>
+                <p className="mb-1 font-semibold text-amber-400">{t('depthLabel')}</p>
+                <p className="text-2xl font-bold text-gh-fg dark:text-white">{t('depthValue')}</p>
               </div>
               <div>
-                <p className="mb-1 font-semibold text-amber-400">Тип буріння</p>
-                <p className="text-2xl font-bold text-gh-fg dark:text-white">CFA + Обсадні труби</p>
+                <p className="mb-1 font-semibold text-amber-400">{t('drillingLabel')}</p>
+                <p className="text-2xl font-bold text-gh-fg dark:text-white">
+                  {t('drillingValue')}
+                </p>
               </div>
               <div>
-                <p className="mb-1 font-semibold text-amber-400">Продуктивність</p>
-                <p className="text-2xl font-bold text-gh-fg dark:text-white">До 12 паль за зміну</p>
+                <p className="mb-1 font-semibold text-amber-400">{t('productivityLabel')}</p>
+                <p className="text-2xl font-bold text-gh-fg dark:text-white">
+                  {t('productivityValue')}
+                </p>
               </div>
             </div>
           </Reveal>

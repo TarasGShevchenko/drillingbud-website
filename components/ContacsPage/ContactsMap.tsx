@@ -1,12 +1,16 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { Reveal } from '@/components'
 
 export default function ContactsInfo() {
+  const t = useTranslations('Contacts')
+
   return (
     <section className="bg-white py-12 dark:bg-zinc-950">
       <Reveal className="mx-auto max-w-6xl px-6">
-        <h3 className="mb-6 text-center text-2xl font-semibold">Ми знаходимось у центрі Києва</h3>
+        <h3 className="mb-6 text-center text-2xl font-semibold">{t('mapTitle')}</h3>
 
         <div className="aspect-video w-full overflow-hidden rounded-3xl border border-zinc-800 shadow-2xl">
           <iframe
@@ -20,9 +24,7 @@ export default function ContactsInfo() {
           />
         </div>
 
-        <p className="mt-4 text-center text-sm text-gh-muted dark:text-zinc-500">
-          Точне місце виїзду бригади узгоджується індивідуально
-        </p>
+        <p className="mt-4 text-center text-sm text-gh-muted dark:text-zinc-500">{t('mapNote')}</p>
       </Reveal>
     </section>
   )
