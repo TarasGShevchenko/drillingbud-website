@@ -22,6 +22,7 @@ import MotionProvider from '@/components/MotionProvider'
 import Reveal from '@/components/Reveal'
 import ThemeSwitcher from '@/components/ThemeSwitcher'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
+import GoogleAds from '@/components/GoogleAds'
 
 export {
   // nav bar
@@ -51,4 +52,5 @@ export {
   Reveal,
   ThemeSwitcher,
   LanguageSwitcher,
+  GoogleAds,
 }

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 
 import { FieldError, Reveal } from '@/components'
-import { formatPhoneNumber, getPhoneError, PhoneError } from '@/utils'
+import { formatPhoneNumber, getPhoneError, PhoneError, trackConversion } from '@/utils'
 
 // Values go to Telegram in Ukrainian whatever the page language; labels are translated
 const CALL_TIMES = [
@@ -84,6 +84,7 @@ export default function ContactForm() {
         throw new Error('Request failed')
       }
 
+      trackConversion('lead')
       setSubmitted(true)
 
       setTimeout(() => {
