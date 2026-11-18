@@ -10,6 +10,7 @@ import '../globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import MotionProvider from '@/components/MotionProvider'
+import GoogleAds from '@/components/GoogleAds'
 import { type Locale, routing } from '@/i18n/routing'
 import { getSharedOpenGraph, getStructuredData, themeScript } from '@/utils'
 
@@ -100,6 +101,7 @@ export default async function RootLayout({
           </MotionProvider>
         </NextIntlClientProvider>
         <SpeedInsights />
+        <GoogleAds />
       </body>
     </html>
   )
